@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hattori</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div class="wrapper">
+    <app_header>
+      <nav>
+      <%= link_to(root_path) do %>
+        <h1>hattori</h1> 
+      <% end %>
+        <% if user_signed_in? %> 
+          <%= link_to '　  Home  　', posts_path, class: 'btn btn-default' %> 
+          <%= link_to '   My Page   ', user_path(current_user), class: 'btn btn-default' %> 
+          <%= link_to '   New Post   ', new_post_path, class: 'btn btn-default' %> 
+        <p class="navbar-text navbar-right"><%= link_to "ログアウト", sign_out_path, id: "logout", class: 'btn btn-default' %></p>
+        <% else %>
+          <%= link_to "サインイン", new_user_registration_path, class: 'btn btn-default' %> 
+          <%= link_to "ログイン", new_user_session_path, class: 'btn btn-default' %>
+        <% end %>
+      </nav>
+
+    </app_header>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+      <div class="container">
+      <%= yield %>
+      </div>
+      <footer>
+        <p>hattori</p>
+      </footer>
+    </div>
+  </body>
+</html>
